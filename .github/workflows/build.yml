@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q MyLauncher.zip
+      - run: sed -i 's/glass(2, 0x99FFFFFF)/glass(2, 0x99FFFFFF.toInt())/' MyLauncher/app/src/main/java/com/example/mylauncher/MainActivity.kt
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
