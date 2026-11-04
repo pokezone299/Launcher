@@ -6,7 +6,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: unzip -q MyLauncher.zip
-      - run: sed -i 's/glass(2, 0x99FFFFFF)/glass(2, 0x99FFFFFF.toInt())/' MyLauncher/app/src/main/java/com/example/mylauncher/MainActivity.kt
+      - run: |
+          F=MyLauncher/app/src/main/java/com/example/mylauncher/MainActivity.kt
+          sed -i 's/glass(2, 0x99FFFFFF)/glass(2, 0x99FFFFFF.toInt())/' $F
+          sed -i 's/val hint = TextView/val swipeHint = TextView/; s/addView(hint, /addView(swipeHint, /' $F
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
